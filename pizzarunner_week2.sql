@@ -154,10 +154,9 @@ ORDER BY runner_id;
 --C - Ingredient Optimization
 --C1
 topnum AS (
-SELECT n.pizza_name, REGEXP_SPLIT_TO_TABLE(r.toppings , ', ')::integer AS top_id
+SELECT n.pizza_name, REGEXP_SPLIT_TO_TABLE(r.toppings, ', ')::integer AS top_id
 FROM pizza_runner.pizza_recipes r
-JOIN pizza_runner.pizza_names n
-ON r.pizza_id = n.pizza_id
+JOIN pizza_runner.pizza_names n ON r.pizza_id = n.pizza_id
 )
 
 SELECT topnum.pizza_name, array_to_string(array_agg(t.topping_name),', ')
